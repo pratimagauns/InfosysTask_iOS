@@ -13,6 +13,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        DataAccessManager.sharedInstance.fetchData(completion: {
+            (response, error) in
+            
+            print(response?.title)
+           
+        })
     }
 
     override func didReceiveMemoryWarning() {
