@@ -27,6 +27,8 @@
 		B3324FC920E9016400B398BD /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FC820E9016400B398BD /* ViewControllerModel.swift */; };
 		B3324FCB20E9058300B398BD /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FCA20E9058300B398BD /* TableViewCellModel.swift */; };
 		B3324FCF20E9366B00B398BD /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FCE20E9366B00B398BD /* ImageRequest.swift */; };
+		B3324FD120E94C0900B398BD /* ViewControllerModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FD020E94C0900B398BD /* ViewControllerModelTests.swift */; };
+		B3324FD320E9508F00B398BD /* PhotoDownloadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FD220E9508F00B398BD /* PhotoDownloadManagerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		B3324FC820E9016400B398BD /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
 		B3324FCA20E9058300B398BD /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
 		B3324FCE20E9366B00B398BD /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		B3324FD020E94C0900B398BD /* ViewControllerModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModelTests.swift; sourceTree = "<group>"; };
+		B3324FD220E9508F00B398BD /* PhotoDownloadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDownloadManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,8 @@
 			children = (
 				B30D75BA20E606BE007E7AE6 /* AboutCityTests.swift */,
 				B30D75BC20E606BE007E7AE6 /* Info.plist */,
+				B3324FD020E94C0900B398BD /* ViewControllerModelTests.swift */,
+				B3324FD220E9508F00B398BD /* PhotoDownloadManagerTests.swift */,
 			);
 			path = AboutCityTests;
 			sourceTree = "<group>";
@@ -367,6 +373,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3324FD320E9508F00B398BD /* PhotoDownloadManagerTests.swift in Sources */,
+				B3324FD120E94C0900B398BD /* ViewControllerModelTests.swift in Sources */,
 				B30D75BB20E606BE007E7AE6 /* AboutCityTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

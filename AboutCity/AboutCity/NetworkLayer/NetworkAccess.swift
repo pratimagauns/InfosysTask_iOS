@@ -12,6 +12,7 @@ enum DataError :String{
     case NetworkError
     case NoData
     case InvalidData
+    case MissingSearchURL
 }
 
 class NetworkAccess: NSObject {

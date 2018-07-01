@@ -16,7 +16,11 @@ class DataAccessManager: NSObject {
     private override init() {}
     
     func fetchData(searchURL: String, completion: @escaping (_ data: ResponseData?, _ error: DataError?) -> Void) {
-
+        if searchURL.isEmpty {
+            completion(nil, .MissingSearchURL)
+            return
+        }
+        
         NetworkAccess().getData(searchURL: searchURL, completion:  {
             (response, error) in
             

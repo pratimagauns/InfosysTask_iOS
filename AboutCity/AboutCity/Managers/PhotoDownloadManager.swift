@@ -44,6 +44,11 @@ class PhotoDownloadManager: NSObject {
     
     // Method that downloads the image if not exist in cache
     func retrieveImage(for url: String, completion: @escaping (UIImage?) -> Void)  -> ImageRequest? {
+        if url.isEmpty {
+            completion(nil)
+            return nil
+        }
+        
         if let image = cachedImage(for: url) {
             completion(image)
             return nil
