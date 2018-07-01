@@ -16,6 +16,8 @@ class TableViewCell: UITableViewCell {
     
     var tableViewCellModel: TableViewCellModel!
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

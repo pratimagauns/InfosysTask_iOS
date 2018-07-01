@@ -17,6 +17,16 @@ class ViewController: UIViewController {
     
     let searchURL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
 
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+            #selector(ViewController.handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,16 +36,23 @@ class ViewController: UIViewController {
         
         viewControllerModel = ViewControllerModel(view: self)
         viewControllerModel.fetchData(searchURL: searchURL)
+        
+        self.tableview.addSubview(self.refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        viewControllerModel.fetchData(searchURL: searchURL)
+    }
 }
 
 extension ViewController: View {
     func didFetchResults(dataRows: [DataRow]) {
+        refreshControl.endRefreshing()
         self.dataRows = dataRows
         self.tableview.reloadData()
     }
