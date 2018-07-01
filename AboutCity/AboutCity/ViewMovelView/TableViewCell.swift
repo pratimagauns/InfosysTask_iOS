@@ -32,7 +32,7 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell: CellView {
     func showActivityIndicator() {
-        activityIndicator.startAnimating()
+        self.activityIndicator.startAnimating()
     }
     
     func hideActivityIndicator() {
@@ -40,7 +40,7 @@ extension TableViewCell: CellView {
     }
     
     func loadImageView(image: UIImage?) {
-         self.imageview.image = image
+        self.imageview.image = image
     }
     
     func loadTitle(title: String?) {
@@ -53,7 +53,7 @@ extension TableViewCell: CellView {
     
     func loadDescription(description: String?) {
         guard let description = description else {
-            self.titleLabel.text = "No Description Found"
+            self.descriptionLabel.text = "No Description Found"
             return
         }
         self.descriptionLabel.text = description

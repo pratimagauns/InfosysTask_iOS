@@ -15,7 +15,9 @@ protocol CellView {
     func loadTitle(title: String?)
     func loadDescription(description: String?)
 }
+
 class TableViewCellModel: NSObject {
+    
     let view:CellView!
     var request: ImageRequest?
     
@@ -28,25 +30,23 @@ class TableViewCellModel: NSObject {
         self.view.loadTitle(title: dataRow.title)
         self.view.loadDescription(description: dataRow.rowDescription)
         
-        self.view.showActivityIndicator()
         guard let imageUrl = dataRow.imageHref else {
-            self.view.loadImageView(image: UIImage(named:"no-image"))
-            self.view.hideActivityIndicator()
+            self.view.loadImageView(image: #imageLiteral(resourceName: "no-image"))
             return
         }
         
-        self.request = PhotoDownloadManager.sharedInstance.retrieveImage(for: imageUrl, completion: { image in
-            self.view.hideActivityIndicator()
+        self.view.showActivityIndicator()
+        self.request = PhotoDownloadManager.sharedInstance.retrieveImage(for: imageUrl, completion: { [weak self] image in
+            self?.view.hideActivityIndicator()
             guard let downloadedImage = image else {
-                self.view.loadImageView(image: UIImage(named:"no-image"))
+                self?.view.loadImageView(image: #imageLiteral(resourceName: "no-image"))
                 return
             }
-            self.view.loadImageView(image: downloadedImage)
+            self?.view.loadImageView(image: downloadedImage)
         })
     }
     
     func reset() {
-        self.view.loadImageView(image: nil)
         request?.cancel()
     }
 }

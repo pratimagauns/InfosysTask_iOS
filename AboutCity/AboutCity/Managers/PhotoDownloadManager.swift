@@ -11,17 +11,24 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
+//
+// Helper extension for megabyte conversion
+//
 extension UInt64 {
     func megabytes() -> UInt64 {
         return self * 1024 * 1024
     }
 }
 
+//
+// Class to handle downloading images from the server
+//
 class PhotoDownloadManager: NSObject {
     static let sharedInstance = PhotoDownloadManager()
     
     private override init() {}
     
+    // Fetching the images using operation queues
     let decodeQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.underlyingQueue = DispatchQueue(label: "com.pgauns.PhotoDownloader", attributes: .concurrent)
@@ -29,11 +36,13 @@ class PhotoDownloadManager: NSObject {
         return queue
     }()
     
+    // Initializing the cache for image storing
     let imageCache = AutoPurgingImageCache(
         memoryCapacity: UInt64(100).megabytes(),
         preferredMemoryUsageAfterPurge: UInt64(60).megabytes()
     )
     
+    // Method that downloads the image if not exist in cache
     func retrieveImage(for url: String, completion: @escaping (UIImage?) -> Void)  -> ImageRequest? {
         if let image = cachedImage(for: url) {
             completion(image)
@@ -48,29 +57,21 @@ class PhotoDownloadManager: NSObject {
         let imageRequest = ImageRequest(request: request)
         imageRequest.request.response(queue: queue, responseSerializer: serializer) { response in
             guard let image = response.result.value else { return }
-            imageRequest.decodeOperation = self.decode(image) { image in
+            
+            self.cache(image, for: url)
+            DispatchQueue.main.async {
                 completion(image)
-                self.cache(image, for: url)
             }
         }
         return imageRequest
     }
     
     //MARK: - Image Caching
-    
     func cache(_ image: Image, for url: String) {
         imageCache.add(image, withIdentifier: url)
     }
     
     func cachedImage(for url: String) -> Image? {
         return imageCache.image(withIdentifier: url)
-    }
-        
-    //MARK: - Image Decoding
-    
-    func decode(_ image: UIImage, completion: @escaping (UIImage) -> Void) -> DecodeOperation {
-        let operation = DecodeOperation(image: image, completion: completion)
-        decodeQueue.addOperation(operation)
-        return operation
     }
 }

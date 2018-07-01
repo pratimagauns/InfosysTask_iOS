@@ -24,10 +24,9 @@
 		B3324FBF20E8E9D900B398BD /* PhotoDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FBE20E8E9D900B398BD /* PhotoDownloadManager.swift */; };
 		B3324FC120E8ECA000B398BD /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3324FC020E8ECA000B398BD /* AlamofireImage.framework */; };
 		B3324FC220E8ECA900B398BD /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3324FC020E8ECA000B398BD /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B3324FC520E8FB3A00B398BD /* DecodeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FC420E8FB3A00B398BD /* DecodeOperation.swift */; };
-		B3324FC720E8FB5600B398BD /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FC620E8FB5600B398BD /* ImageRequest.swift */; };
 		B3324FC920E9016400B398BD /* ViewControllerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FC820E9016400B398BD /* ViewControllerModel.swift */; };
 		B3324FCB20E9058300B398BD /* TableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FCA20E9058300B398BD /* TableViewCellModel.swift */; };
+		B3324FCF20E9366B00B398BD /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FCE20E9366B00B398BD /* ImageRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +83,9 @@
 		B3324FBA20E8E96700B398BD /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		B3324FBE20E8E9D900B398BD /* PhotoDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDownloadManager.swift; sourceTree = "<group>"; };
 		B3324FC020E8ECA000B398BD /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		B3324FC420E8FB3A00B398BD /* DecodeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeOperation.swift; sourceTree = "<group>"; };
-		B3324FC620E8FB5600B398BD /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		B3324FC820E9016400B398BD /* ViewControllerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModel.swift; sourceTree = "<group>"; };
 		B3324FCA20E9058300B398BD /* TableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellModel.swift; sourceTree = "<group>"; };
+		B3324FCE20E9366B00B398BD /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +139,6 @@
 		B30D75A420E606BD007E7AE6 /* AboutCity */ = {
 			isa = PBXGroup;
 			children = (
-				B3324FC320E8FB2A00B398BD /* Decoding */,
 				B30D75D720E609E8007E7AE6 /* ViewMovelView */,
 				B30D75D620E609C8007E7AE6 /* NetworkLayer */,
 				B30D75D520E609C1007E7AE6 /* Managers */,
@@ -176,6 +173,7 @@
 		B30D75D320E609AA007E7AE6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B3324FCE20E9366B00B398BD /* ImageRequest.swift */,
 				B3324FAA20E6177100B398BD /* Data.swift */,
 				B3324FAC20E617CA00B398BD /* DataRow.swift */,
 			);
@@ -217,15 +215,6 @@
 				B3324FBA20E8E96700B398BD /* Alamofire.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B3324FC320E8FB2A00B398BD /* Decoding */ = {
-			isa = PBXGroup;
-			children = (
-				B3324FC420E8FB3A00B398BD /* DecodeOperation.swift */,
-				B3324FC620E8FB5600B398BD /* ImageRequest.swift */,
-			);
-			path = Decoding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3324FAD20E617CA00B398BD /* DataRow.swift in Sources */,
+				B3324FCF20E9366B00B398BD /* ImageRequest.swift in Sources */,
 				B30D75A820E606BD007E7AE6 /* ViewController.swift in Sources */,
 				B3324FBF20E8E9D900B398BD /* PhotoDownloadManager.swift in Sources */,
 				B3324FCB20E9058300B398BD /* TableViewCellModel.swift in Sources */,
@@ -368,10 +358,8 @@
 				B3324FAB20E6177100B398BD /* Data.swift in Sources */,
 				B30D75A620E606BD007E7AE6 /* AppDelegate.swift in Sources */,
 				B30D75DB20E60B0B007E7AE6 /* NetworkAccess.swift in Sources */,
-				B3324FC520E8FB3A00B398BD /* DecodeOperation.swift in Sources */,
 				B3324FAF20E66F4100B398BD /* TableViewCell.swift in Sources */,
 				B30D75D920E60AD6007E7AE6 /* DataAccessManager.swift in Sources */,
-				B3324FC720E8FB5600B398BD /* ImageRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

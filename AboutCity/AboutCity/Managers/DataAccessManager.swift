@@ -8,14 +8,16 @@
 
 import UIKit
 
+//
+// Class to handle fetching the initial JSON data from the server
+//
 class DataAccessManager: NSObject {
     static let sharedInstance = DataAccessManager()
-
     private override init() {}
     
-    func fetchData(completion: @escaping (_ data: ResponseData?, _ error: DataError?) -> Void) {
+    func fetchData(searchURL: String, completion: @escaping (_ data: ResponseData?, _ error: DataError?) -> Void) {
 
-        NetworkAccess().getData(searchURL: "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json", completion:  {
+        NetworkAccess().getData(searchURL: searchURL, completion:  {
             (response, error) in
             
             guard error == nil else {
@@ -24,6 +26,7 @@ class DataAccessManager: NSObject {
             }
             
             do {
+                // Decoding the JSON string to ResponseData object
                 let decoder = JSONDecoder()
                 let responseData = try decoder.decode(ResponseData.self, from: response!)
                 completion(responseData, nil)
