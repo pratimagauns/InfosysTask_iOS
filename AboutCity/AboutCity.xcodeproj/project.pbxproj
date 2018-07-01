@@ -29,6 +29,7 @@
 		B3324FCF20E9366B00B398BD /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FCE20E9366B00B398BD /* ImageRequest.swift */; };
 		B3324FD120E94C0900B398BD /* ViewControllerModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FD020E94C0900B398BD /* ViewControllerModelTests.swift */; };
 		B3324FD320E9508F00B398BD /* PhotoDownloadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FD220E9508F00B398BD /* PhotoDownloadManagerTests.swift */; };
+		B3324FD620E961A100B398BD /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3324FD520E961A100B398BD /* Connectivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		B3324FCE20E9366B00B398BD /* ImageRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		B3324FD020E94C0900B398BD /* ViewControllerModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerModelTests.swift; sourceTree = "<group>"; };
 		B3324FD220E9508F00B398BD /* PhotoDownloadManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDownloadManagerTests.swift; sourceTree = "<group>"; };
+		B3324FD520E961A100B398BD /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +191,7 @@
 		B30D75D520E609C1007E7AE6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B3324FD520E961A100B398BD /* Connectivity.swift */,
 				B30D75D820E60AD6007E7AE6 /* DataAccessManager.swift */,
 				B3324FBE20E8E9D900B398BD /* PhotoDownloadManager.swift */,
 			);
@@ -363,6 +366,7 @@
 				B3324FC920E9016400B398BD /* ViewControllerModel.swift in Sources */,
 				B3324FAB20E6177100B398BD /* Data.swift in Sources */,
 				B30D75A620E606BD007E7AE6 /* AppDelegate.swift in Sources */,
+				B3324FD620E961A100B398BD /* Connectivity.swift in Sources */,
 				B30D75DB20E60B0B007E7AE6 /* NetworkAccess.swift in Sources */,
 				B3324FAF20E66F4100B398BD /* TableViewCell.swift in Sources */,
 				B30D75D920E60AD6007E7AE6 /* DataAccessManager.swift in Sources */,

@@ -21,6 +21,11 @@ class DataAccessManager: NSObject {
             return
         }
         
+        if Connectivity.sharedInstance.isReachable == false {
+            completion(nil, DataError.NetworkError)
+            return
+        }
+        
         NetworkAccess().getData(searchURL: searchURL, completion:  {
             (response, error) in
             

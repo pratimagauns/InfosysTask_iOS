@@ -54,6 +54,11 @@ class PhotoDownloadManager: NSObject {
             return nil
         }
         
+        if Connectivity.sharedInstance.isReachable == false {
+            completion(nil)
+            return nil
+        }
+        
         let queue = decodeQueue.underlyingQueue
         let request = Alamofire.request(url, method: .get)
 
