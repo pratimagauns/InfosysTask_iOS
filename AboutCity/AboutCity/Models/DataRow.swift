@@ -11,5 +11,11 @@ import UIKit
 class DataRow: NSObject, Codable {
     var title: String?
     var rowDescription: String?
-    var imageRef: String?
+    var imageHref: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case title
+        case rowDescription = "description"
+        case imageHref
+    }
 }
