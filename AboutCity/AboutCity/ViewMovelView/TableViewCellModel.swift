@@ -9,8 +9,6 @@
 import UIKit
 
 protocol CellView {
-    func showActivityIndicator()
-    func hideActivityIndicator()
     func loadImageView(image: UIImage?)
     func loadTitle(title: String?)
     func loadDescription(description: String?)
@@ -35,9 +33,7 @@ class TableViewCellModel: NSObject {
             return
         }
         
-        self.view.showActivityIndicator()
         self.request = PhotoDownloadManager.sharedInstance.retrieveImage(for: imageUrl, completion: { [weak self] image in
-            self?.view.hideActivityIndicator()
             guard let downloadedImage = image else {
                 self?.view.loadImageView(image: #imageLiteral(resourceName: "no-image"))
                 return
@@ -47,6 +43,7 @@ class TableViewCellModel: NSObject {
     }
     
     func reset() {
+        self.view.loadImageView(image: nil)
         request?.cancel()
     }
 }
