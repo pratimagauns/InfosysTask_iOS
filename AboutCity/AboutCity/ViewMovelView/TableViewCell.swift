@@ -9,21 +9,54 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-    @IBOutlet  weak var titleLabel:UILabel!
-    @IBOutlet  weak var descriptionLabel:UILabel!
-    @IBOutlet  weak var imageview:UIImageView!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    var titleLabel = UILabel()
+    var descriptionLabel = UILabel()
+    var imageview = UIImageView()
     
     var tableViewCellModel: TableViewCellModel!
     
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        self.tableViewCellModel = TableViewCellModel(view: self)
+        self.setupSubviews()
+    }
     
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-        self.activityIndicator.hidesWhenStopped = true
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func setupSubviews() {
+
+        let marginGuide = contentView.layoutMarginsGuide
         
-        tableViewCellModel = TableViewCellModel(view: self)
+        // configure titleLabel
+        contentView.addSubview(titleLabel)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
+        titleLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+        
+        // configure imageview
+        contentView.addSubview(imageview)
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+        imageview.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        imageview.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        imageview.contentMode = .scaleAspectFit
+        
+        // configure description label
+        contentView.addSubview(descriptionLabel)
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: imageview.bottomAnchor).isActive = true
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont(name: "Avenir-Book", size: 12)
+        descriptionLabel.textColor = UIColor.lightGray
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,16 +66,11 @@ class TableViewCell: UITableViewCell {
 }
 
 extension TableViewCell: CellView {
-    func showActivityIndicator() {
-        self.activityIndicator.startAnimating()
-    }
-    
-    func hideActivityIndicator() {
-        self.activityIndicator.stopAnimating()
-    }
     
     func loadImageView(image: UIImage?) {
         self.imageview.image = image
+        setNeedsUpdateConstraints()
+        updateConstraintsIfNeeded()
     }
     
     func loadTitle(title: String?) {

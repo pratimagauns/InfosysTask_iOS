@@ -11,11 +11,12 @@ import UIKit
 class ViewController: UIViewController {
 
     var dataRows = [DataRow]()
-    @IBOutlet weak var tableview: UITableView!
+    var tableView = UITableView()
     var viewControllerModel:ViewControllerModel!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    var activityIndicator = UIActivityIndicatorView()
     
     let searchURL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json"
+    let CellIdentifier = "Cell"
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -31,13 +32,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.tableview.rowHeight = UITableViewAutomaticDimension
-        self.tableview.estimatedRowHeight = 340
-        
         viewControllerModel = ViewControllerModel(view: self)
-        viewControllerModel.fetchData(searchURL: searchURL)
         
-        self.tableview.addSubview(self.refreshControl)
+        self.setupTableView()
+        self.setupActivityIndicator()
+        
+        viewControllerModel.fetchData(searchURL: searchURL)
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +46,29 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    private func setupTableView() {
+        
+        tableView.dataSource = self
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: CellIdentifier)
+        
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        
+    }
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+
+        activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         viewControllerModel.fetchData(searchURL: searchURL)
     }
@@ -54,7 +78,7 @@ extension ViewController: View {
     func didFetchResults(dataRows: [DataRow]) {
         refreshControl.endRefreshing()
         self.dataRows = dataRows
-        self.tableview.reloadData()
+        self.tableView.reloadData()
     }
     
     func showError(error: String) {
@@ -78,11 +102,13 @@ extension ViewController: View {
 
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell",
-                                                 for: indexPath) as! TableViewCell
-        
-        cell.tableViewCellModel.configureView(with: dataRows[indexPath.row])
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: CellIdentifier,
+                                                    for: indexPath) as? TableViewCell
+        {
+            cell.tableViewCellModel.configureView(with: dataRows[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
